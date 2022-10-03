@@ -18,4 +18,6 @@ public interface BaseConfig extends Config {
     String driverPath();
 
     String driverProperty();
+
+    String browserSize();
 }

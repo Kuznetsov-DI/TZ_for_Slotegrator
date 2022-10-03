@@ -1,25 +1,47 @@
 package page;
 
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import lombok.SneakyThrows;
+import org.openqa.selenium.By;
+
+import java.util.Comparator;
+import java.util.List;
+
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PlayersPage {
 
-    private final WebDriver driver;
+    private final SelenideElement playersTable = $("#payment-system-transaction-grid");
+    private final SelenideElement registrationSortButton = $("#payment-system-transaction-grid_c9");
+    private final ElementsCollection registrationDateList = $$(By.xpath("//tbody/tr/td[10]"));
 
-    @FindBy(id = "payment-system-transaction-grid")
-    private WebElement playersTable;
-
-    public PlayersPage(final WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public PlayersPage openPlayersPage() {
+        open("/user/player/admin");
+        return page(PlayersPage.class);
     }
 
     @Step("Проверка, таблица с игроками отображается")
-    public boolean playersTableIsVisible() {
-        return playersTable.isDisplayed();
+    public PlayersPage playersTableShouldBeVisible() {
+        playersTable.shouldBe(visible);
+        return page(PlayersPage.class);
+    }
+
+    @SneakyThrows
+    @Step("Нажатие на кнопку сортировки по дате регистрации")
+    public PlayersPage clickSortByRegistrationDate() {
+        registrationSortButton.click();
+        Thread.sleep(1000);
+        return page(PlayersPage.class);
+    }
+
+    @Step("Проверка сортировки таблицы по датам регистрации")
+    public boolean checkSortRegistrationDateList() {
+        List<String> list = registrationDateList.texts();
+        list.sort(Comparator.naturalOrder());
+
+        return list.equals(registrationDateList.texts());
     }
 }

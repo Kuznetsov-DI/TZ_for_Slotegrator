@@ -1,34 +1,23 @@
 package page;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CasinoPage {
 
-    private final WebDriver driver;
+    private final SelenideElement contentSection = $("#content");
 
-    @FindBy(id = "content")
-    private WebElement contentSection;
-
-    @FindBy(xpath = "//section[@id='content']//div[@class='col-lg-3 col-xsm-6'][3]")
-    private WebElement playersButton;
-
-    public CasinoPage(final WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public CasinoPage openCasinoPage() {
+        open("/configurator/dashboard/index");
+        return page(CasinoPage.class);
     }
 
     @Step("Проверка, что секция с панелью администратора отображается")
-    public boolean contentIsVisible() {
-        return contentSection.isDisplayed();
-    }
-
-    @Step("Нажатие на кнопку \"Players\"")
-    public CasinoPage clickPlayersButton() {
-        playersButton.click();
-        return this;
+    public CasinoPage contentShouldBeVisible() {
+        contentSection.shouldBe(visible);
+        return page(CasinoPage.class);
     }
 }

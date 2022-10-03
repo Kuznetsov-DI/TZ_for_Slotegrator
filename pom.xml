@@ -50,9 +50,9 @@
             <version>5.2.0</version>
         </dependency>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.5.0</version>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.25.0</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>

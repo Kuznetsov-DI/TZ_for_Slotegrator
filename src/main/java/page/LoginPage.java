@@ -1,44 +1,39 @@
 package page;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 
 public class LoginPage {
 
-    private final WebDriver driver;
+    private final SelenideElement loginInput = $("#UserLogin_username");
+    private final SelenideElement passwordInput = $("#UserLogin_password");
 
-    @FindBy(id = "UserLogin_username")
-    private WebElement loginInput;
+    private final SelenideElement signInButton = $("input[value='Sign in']");
 
-    @FindBy(id = "UserLogin_password")
-    private WebElement passwordInput;
-
-    @FindBy(css = "input[value='Sign in']")
-    private WebElement signInButton;
-
-    public LoginPage(final WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public LoginPage openLoginPage() {
+        open("/admin/login");
+        return page(LoginPage.class);
     }
 
     @Step("Ввод логина {login}")
-    public LoginPage inputLogin(String login){
+    public LoginPage inputLogin(String login) {
         loginInput.sendKeys(login);
-        return this;
+        return page(LoginPage.class);
     }
 
     @Step("Ввод пароля")
-    public LoginPage inputPassword(String password){
+    public LoginPage inputPassword(String password) {
         passwordInput.sendKeys(password);
-        return this;
+        return page(LoginPage.class);
     }
 
     @Step("Клик на кнопку \"Sign in\"")
-    public CasinoPage clickSignInButton(){
+    public CasinoPage clickSignInButton() {
         signInButton.click();
-        return new CasinoPage(driver);
+        return new CasinoPage();
     }
 }
