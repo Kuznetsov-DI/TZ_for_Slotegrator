@@ -15,9 +15,5 @@ public interface BaseConfig extends Config {
 
     String uiPassword();
 
-    String driverPath();
-
-    String driverProperty();
-
     String browserSize();
 }

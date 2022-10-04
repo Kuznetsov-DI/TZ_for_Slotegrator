@@ -1,19 +1,21 @@
 package api;
 
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import service.AuthService;
 
-import static config.ApiConfig.getRequestSpecification;
-import static io.restassured.RestAssured.given;
+import static utils.AuthHelper.getGuestBearerToken;
 
 public class ApiTest {
+    private final AuthService steps = new AuthService();
+    private final SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void testApi() {
 
-//        given(getRequestSpecification())
-//                .auth()
-//                .basic("username", "front_2d6b0a8391742f5d789d7d915755e09e")
-//                .
+        String token = getGuestBearerToken();
+
+
     }
 
 }
