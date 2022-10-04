@@ -1,5 +1,6 @@
 package config;
 
+import constant.HeaderParameters;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -15,6 +16,7 @@ public class ApiConfig {
                 .setBaseUri(config.apiUrl())
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
+                .addHeader(HeaderParameters.CHARSET_KEY_PARAM, HeaderParameters.CHARSET_VALUE_PARAM)
                 .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL)
                 .build();
