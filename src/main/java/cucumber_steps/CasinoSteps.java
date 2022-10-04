@@ -1,4 +1,4 @@
-package cucumber.steps;
+package cucumber_steps;
 
 import com.codeborne.selenide.Configuration;
 import config.BaseConfig;
