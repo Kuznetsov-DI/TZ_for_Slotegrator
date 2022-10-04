@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -29,11 +30,10 @@ public class PlayersPage {
         return page(PlayersPage.class);
     }
 
-    @SneakyThrows
     @Step("Нажатие на кнопку сортировки по дате регистрации")
     public PlayersPage clickSortByRegistrationDate() {
         registrationSortButton.click();
-        Thread.sleep(1000);
+        playersTable.shouldNotHave(attribute("class","grid-view grid-view-loading"));
         return page(PlayersPage.class);
     }
 

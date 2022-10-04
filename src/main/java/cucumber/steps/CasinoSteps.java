@@ -5,7 +5,6 @@ import config.BaseConfig;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import lombok.SneakyThrows;
 import org.aeonbits.owner.ConfigFactory;
 import page.LoginPage;
 import page.PlayersPage;
