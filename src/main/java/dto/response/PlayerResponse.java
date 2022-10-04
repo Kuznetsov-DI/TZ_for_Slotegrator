@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = "id")
-public class PlayerCreationResponse{
+public class PlayerResponse {
 
 	private Integer id;
 

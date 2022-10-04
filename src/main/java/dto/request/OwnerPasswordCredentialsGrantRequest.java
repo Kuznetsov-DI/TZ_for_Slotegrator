@@ -8,12 +8,11 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class ClientCredentialsGrantRequest {
+public class OwnerPasswordCredentialsGrantRequest {
 
 	@Builder.Default
 	@JsonProperty("grant_type")
-	private final String grantType = "client_credentials";
-
-	@Builder.Default
-	private final String scope = "guest:default";
+	private final String grantType = "password";
+	private final String username;
+	private final String password;
 }

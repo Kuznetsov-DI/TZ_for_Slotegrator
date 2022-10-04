@@ -16,11 +16,20 @@ public class PlayerService extends ApiConfig {
     public ValidatableResponse postNewPlayerCreation(PlayerCreationRequest request, String token) {
 
         return given(getRequestSpecification())
-                .header(HeaderParameters.AUTH_KEY_PARAM,token)
+                .header(HeaderParameters.AUTH_KEY_PARAM, token)
                 .when()
                 .body(request)
                 .post(PLAYERS_PATH)
-                .then()
-                .log().all();
+                .then();
+    }
+
+    @Step("Получение данных профиля игрока по id - {id}")
+    public ValidatableResponse getPlayerDataById(Integer id, String token) {
+
+        return given(getRequestSpecification())
+                .header(HeaderParameters.AUTH_KEY_PARAM, token)
+                .when()
+                .get(PLAYERS_PATH + "/" + id)
+                .then();
     }
 }

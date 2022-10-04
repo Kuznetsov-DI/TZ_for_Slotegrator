@@ -1,15 +1,15 @@
 package utils;
 
 import dto.request.PlayerCreationRequest;
-import dto.response.PlayerCreationResponse;
+import dto.response.PlayerResponse;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ExpectedDataBuilder {
 
-    public static PlayerCreationResponse getPlayerCreationResponseByRequest(PlayerCreationRequest request){
+    public static PlayerResponse getPlayerCreationResponseByRequest(PlayerCreationRequest request){
 
-        return PlayerCreationResponse.builder()
+        return PlayerResponse.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .name(request.getName())
